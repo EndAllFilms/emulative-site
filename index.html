@@ -17,46 +17,11 @@
     --glow:   #7c3aed;
   }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.6;
-    overflow-x: hidden;
-    cursor: none;
-  }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(155,92,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(155,92,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none; z-index: 0;
-  }
-  .cursor {
-    width: 10px; height: 10px;
-    background: var(--accent); border-radius: 50%;
-    position: fixed; pointer-events: none; z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: width .2s, height .2s, background .2s;
-    box-shadow: 0 0 12px var(--glow);
-  }
-  .cursor.expand {
-    width: 36px; height: 36px;
-    background: transparent;
-    border: 1.5px solid var(--light);
-    box-shadow: 0 0 20px var(--glow);
-  }
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.6rem 4rem; z-index: 100;
-    background: rgba(7,6,15,0.75);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(155,92,255,0.1);
-  }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; cursor: none; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(155,92,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(155,92,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+  .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s, background .2s; box-shadow: 0 0 12px var(--glow); }
+  .cursor.expand { width: 36px; height: 36px; background: transparent; border: 1.5px solid var(--light); box-shadow: 0 0 20px var(--glow); }
+  nav { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 1.6rem 4rem; z-index: 100; background: rgba(7,6,15,0.75); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(155,92,255,0.1); }
   .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.12em; color: var(--white); text-decoration: none; }
   .logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -72,7 +37,7 @@
   .hero h1 em { font-style: normal; color: transparent; -webkit-text-stroke: 2px var(--accent); }
   .hero-sub { max-width: 420px; margin-top: 2rem; font-size: 1rem; opacity: 0.5; line-height: 1.75; position: relative; }
   .hero-cta { margin-top: 3rem; display: flex; gap: 1.2rem; align-items: center; position: relative; }
-  .btn-primary { background: var(--accent); color: var(--black); padding: 1rem 2.5rem; text-decoration: none; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background .2s, transform .2s, box-shadow .2s; display: inline-block; }
+  .btn-primary { background: var(--accent); color: var(--black); padding: 1rem 2.5rem; text-decoration: none; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background .2s, transform .2s, box-shadow .2s; display: inline-block; border: none; font-family: 'DM Sans', sans-serif; cursor: none; }
   .btn-primary:hover { background: var(--light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(155,92,255,0.4); }
   .btn-outline { color: var(--white); border: 1px solid rgba(155,92,255,0.3); padding: 1rem 2.5rem; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; transition: border-color .2s, color .2s; display: inline-block; }
   .btn-outline:hover { border-color: var(--light); color: var(--light); }
@@ -151,6 +116,71 @@
   footer { padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(155,92,255,0.1); font-size: 0.75rem; opacity: 0.3; position: relative; z-index: 1; }
   .fade-up { opacity: 0; transform: translateY(35px); transition: opacity .7s ease, transform .7s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MODAL ── */
+  .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(7,6,15,0.93); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal { background: var(--deep); border: 1px solid rgba(155,92,255,0.22); width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(28px); transition: transform .3s ease; }
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  /* progress bar */
+  .modal-progress { height: 3px; background: rgba(155,92,255,0.15); }
+  .modal-progress-fill { height: 100%; background: var(--accent); transition: width .4s ease; }
+
+  /* header */
+  .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem 0; }
+  .modal-step-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+  .modal-close { background: none; border: none; color: var(--white); opacity: 0.35; font-size: 1.3rem; cursor: none; transition: opacity .2s; line-height: 1; font-family: sans-serif; }
+  .modal-close:hover { opacity: 1; }
+
+  /* step body */
+  .modal-body { padding: 1.8rem 2rem 2rem; }
+  .step-q { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; margin-bottom: 0.5rem; }
+  .step-hint { font-size: 0.85rem; opacity: 0.4; margin-bottom: 1.8rem; }
+
+  /* choice buttons */
+  .choices { display: grid; gap: 0.75rem; }
+  .choices.cols-2 { grid-template-columns: 1fr 1fr; }
+  .choice-btn { background: rgba(155,92,255,0.06); border: 1px solid rgba(155,92,255,0.18); color: var(--white); padding: 1rem 1.2rem; text-align: left; cursor: none; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; transition: border-color .2s, background .2s, transform .15s; display: flex; align-items: center; gap: 0.9rem; }
+  .choice-btn:hover { border-color: var(--accent); background: rgba(155,92,255,0.12); transform: translateX(4px); }
+  .choice-btn.selected { border-color: var(--accent); background: rgba(155,92,255,0.18); }
+  .choice-btn.selected .choice-check { opacity: 1; }
+  .choice-icon { font-size: 1.2rem; flex-shrink: 0; width: 28px; text-align: center; }
+  .choice-text { flex: 1; }
+  .choice-text strong { display: block; font-weight: 500; font-size: 0.92rem; }
+  .choice-text span { font-size: 0.78rem; opacity: 0.45; }
+  .choice-check { width: 18px; height: 18px; border: 1.5px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; flex-shrink: 0; font-size: 0.6rem; color: var(--accent); }
+
+  /* text inputs inside modal */
+  .modal-inputs { display: flex; flex-direction: column; gap: 1rem; }
+  .modal-input-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .modal-input-group label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.45; }
+  .modal-input-group input, .modal-input-group textarea {
+    background: rgba(155,92,255,0.06); border: 1px solid rgba(155,92,255,0.2);
+    color: var(--white); padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300;
+    outline: none; transition: border-color .2s; width: 100%; border-radius: 0; -webkit-appearance: none;
+  }
+  .modal-input-group input:focus, .modal-input-group textarea:focus { border-color: var(--accent); }
+  .modal-input-group textarea { resize: vertical; min-height: 90px; }
+  .modal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* nav buttons */
+  .modal-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; border-top: 1px solid rgba(155,92,255,0.1); margin-top: 0.5rem; }
+  .btn-back { background: none; border: 1px solid rgba(155,92,255,0.2); color: var(--white); opacity: 0.5; padding: 0.75rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: none; transition: opacity .2s, border-color .2s; }
+  .btn-back:hover { opacity: 1; border-color: rgba(155,92,255,0.4); }
+  .btn-next { background: var(--accent); border: none; color: var(--black); padding: 0.85rem 2rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: none; transition: background .2s, box-shadow .2s; }
+  .btn-next:hover { background: var(--light); box-shadow: 0 6px 24px rgba(155,92,255,0.4); }
+  .btn-next:disabled { opacity: 0.3; pointer-events: none; }
+
+  /* success screen */
+  .modal-success { padding: 3.5rem 2rem; text-align: center; }
+  .success-ring { width: 72px; height: 72px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 1.8rem; color: var(--accent); }
+  .success-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: 1; margin-bottom: 0.8rem; }
+  .success-sub { opacity: 0.45; font-size: 0.95rem; max-width: 320px; margin: 0 auto 2rem; line-height: 1.7; }
+  .success-close { background: var(--accent); border: none; color: var(--black); padding: 0.85rem 2.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: none; transition: background .2s; }
+  .success-close:hover { background: var(--light); }
+
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; }
     section { padding: 5rem 1.5rem; } .hero { padding: 0 1.5rem 4rem; }
@@ -161,6 +191,11 @@
     .proj-info { padding: 2rem; }
     .coming-soon { flex-direction: column; gap: 1rem; text-align: center; }
     footer { flex-direction: column; gap: 0.8rem; text-align: center; }
+    .choices.cols-2 { grid-template-columns: 1fr; }
+    .modal-row { grid-template-columns: 1fr; }
+    .modal-body { padding: 1.5rem 1.2rem 1.5rem; }
+    .modal-header { padding: 1.2rem 1.2rem 0; }
+    .modal-nav { padding: 1rem 1.2rem; }
   }
 </style>
 </head>
@@ -216,8 +251,8 @@
     </div>
     <div class="about-text fade-up">
       <p>Emulative Studios is a web design studio focused on one thing: making local businesses look better than their competition. We build fast, custom websites designed to convert visitors into paying customers.</p>
-      <p>Every project is built from scratch — no cookie-cutter templates, no shortcuts. Clean code, sharp visuals, and a clear strategy behind every page.</p>
-      <p>We're just getting started — and we're taking on new clients now. If you want a site worth emulating, let's talk.</p>
+      <p>Every project is built from scratch &mdash; no cookie-cutter templates, no shortcuts. Clean code, sharp visuals, and a clear strategy behind every page.</p>
+      <p>We're just getting started &mdash; and we're taking on new clients now. If you want a site worth emulating, let's talk.</p>
     </div>
   </div>
 </section>
@@ -228,19 +263,13 @@
     <div class="proj-preview">
       <div class="browser">
         <div class="browser-bar">
-          <div class="dot dot-r"></div>
-          <div class="dot dot-y"></div>
-          <div class="dot dot-g"></div>
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
           <div class="url-bar">asianamericanauto.net</div>
         </div>
         <div class="browser-content">
           <div class="mock-hero-bar">
             <span class="mock-logo">ASIAN AMERICAN AUTO</span>
-            <div class="mock-nav">
-              <div class="mock-nav-dot"></div>
-              <div class="mock-nav-dot"></div>
-              <div class="mock-nav-dot"></div>
-            </div>
+            <div class="mock-nav"><div class="mock-nav-dot"></div><div class="mock-nav-dot"></div><div class="mock-nav-dot"></div></div>
           </div>
           <div class="mock-banner">
             <div class="mock-h1">Trusted Auto Repair</div>
@@ -248,21 +277,9 @@
             <div class="mock-btn">Book Service</div>
           </div>
           <div class="mock-cards">
-            <div class="mock-card">
-              <div class="mock-card-icon">&#128295;</div>
-              <div class="mock-card-title">Oil Change</div>
-              <div class="mock-card-text">Fast &amp; affordable service</div>
-            </div>
-            <div class="mock-card">
-              <div class="mock-card-icon">&#128663;</div>
-              <div class="mock-card-title">Diagnostics</div>
-              <div class="mock-card-text">Full vehicle inspection</div>
-            </div>
-            <div class="mock-card">
-              <div class="mock-card-icon">&#9881;</div>
-              <div class="mock-card-title">Repairs</div>
-              <div class="mock-card-text">All makes &amp; models</div>
-            </div>
+            <div class="mock-card"><div class="mock-card-icon">&#128295;</div><div class="mock-card-title">Oil Change</div><div class="mock-card-text">Fast &amp; affordable</div></div>
+            <div class="mock-card"><div class="mock-card-icon">&#128663;</div><div class="mock-card-title">Diagnostics</div><div class="mock-card-text">Full inspection</div></div>
+            <div class="mock-card"><div class="mock-card-icon">&#9881;</div><div class="mock-card-title">Repairs</div><div class="mock-card-text">All makes &amp; models</div></div>
           </div>
         </div>
       </div>
@@ -273,16 +290,10 @@
         <div class="proj-name">Asian American Auto</div>
         <p class="proj-desc">A full website for a trusted local auto repair shop. Built to establish credibility online, showcase services clearly, and make it easy for customers to get in touch and book appointments.</p>
         <div class="proj-tags">
-          <span class="tag">Auto Repair</span>
-          <span class="tag">Local Business</span>
-          <span class="tag">Service Listings</span>
-          <span class="tag">Mobile-First</span>
-          <span class="tag">Contact &amp; Booking</span>
+          <span class="tag">Auto Repair</span><span class="tag">Local Business</span><span class="tag">Service Listings</span><span class="tag">Mobile-First</span><span class="tag">Contact &amp; Booking</span>
         </div>
       </div>
-      <a class="proj-link" href="https://asianamericanauto.net/" target="_blank" rel="noopener">
-        Visit Live Site <em class="proj-arrow">&#8599;</em>
-      </a>
+      <a class="proj-link" href="https://asianamericanauto.net/" target="_blank" rel="noopener">Visit Live Site <em class="proj-arrow">&#8599;</em></a>
     </div>
   </a>
   <div class="coming-soon fade-up">
@@ -295,7 +306,7 @@
   <h2 class="process-title fade-up">Simple.<br>Proven.<br>Fast.</h2>
   <div class="steps">
     <div class="step fade-up"><div class="step-num">01</div><div class="step-title">Discovery Call</div><div class="step-text">We learn about your business, your goals, and what success looks like. Free, no commitment.</div></div>
-    <div class="step fade-up"><div class="step-num">02</div><div class="step-title">Design &amp; Build</div><div class="step-text">Custom design and development from scratch — built to match your brand and built to convert.</div></div>
+    <div class="step fade-up"><div class="step-num">02</div><div class="step-title">Design &amp; Build</div><div class="step-text">Custom design and development from scratch &mdash; built to match your brand and built to convert.</div></div>
     <div class="step fade-up"><div class="step-num">03</div><div class="step-title">Review &amp; Refine</div><div class="step-text">You review, request revisions, and we polish until every detail is exactly right.</div></div>
     <div class="step fade-up"><div class="step-num">04</div><div class="step-title">Launch &amp; Grow</div><div class="step-text">Your site goes live and starts working for you. We stay available for ongoing support.</div></div>
   </div>
@@ -304,10 +315,10 @@
   <div class="cta-glow"></div>
   <div class="cta-bg-text">LET'S BUILD</div>
   <h2 class="fade-up">Ready to<br><em>Stand Out?</em></h2>
-  <p class="fade-up">Let's build something your competitors will be jealous of. Reach out and we'll get back to you fast.</p>
-  <a href="mailto:hello@emulativestudios.com" class="cta-email fade-up">hello@emulativestudios.com</a>
+  <p class="fade-up">Let's build something your competitors will be jealous of. Fill out our quick application and we'll get back to you fast.</p>
+  <a href="mailto:hello@emulative.studio" class="cta-email fade-up">hello@emulative.studio</a>
   <div class="cta-btns">
-    <a href="mailto:hello@emulativestudios.com" class="btn-primary">Get a Free Quote</a>
+    <button onclick="openModal()" class="btn-primary">Get a Free Quote</button>
     <a href="#work" class="btn-outline">View Our Work</a>
   </div>
 </section>
@@ -316,20 +327,272 @@
   <span>Web Design</span>
   <span>Set the standard.</span>
 </footer>
+
+<!-- ── QUOTE APPLICATION MODAL ── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-progress"><div class="modal-progress-fill" id="progressFill"></div></div>
+    <div class="modal-header">
+      <span class="modal-step-label" id="stepLabel">Step 1 of 6</span>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
 <script>
-  const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a, button').forEach(el => {
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// ── Application state ──
+let step = 0;
+const answers = {};
+
+const steps = [
+  {
+    id: 'existing_site',
+    q: 'Do you have an existing website?',
+    hint: 'This helps us understand where you\'re starting from.',
+    type: 'choice',
+    cols: 2,
+    choices: [
+      { icon: '✓', label: 'Yes, I have one', sub: 'I want it redesigned or improved', value: 'yes' },
+      { icon: '✗', label: 'No, I don\'t', sub: 'Starting from scratch', value: 'no' },
+    ]
+  },
+  {
+    id: 'business_type',
+    q: 'What type of business do you run?',
+    hint: 'Pick the one that fits best.',
+    type: 'choice',
+    cols: 2,
+    choices: [
+      { icon: '🍽', label: 'Restaurant / Food', value: 'restaurant' },
+      { icon: '🔨', label: 'Contractor / Home Services', value: 'contractor' },
+      { icon: '✂', label: 'Salon / Beauty', value: 'salon' },
+      { icon: '🚗', label: 'Auto / Mechanic', value: 'auto' },
+      { icon: '⚖', label: 'Legal / Professional', value: 'legal' },
+      { icon: '🏥', label: 'Health / Wellness', value: 'health' },
+      { icon: '🛍', label: 'Retail / Shop', value: 'retail' },
+      { icon: '✦', label: 'Other', value: 'other' },
+    ]
+  },
+  {
+    id: 'goal',
+    q: 'What\'s your main goal for the website?',
+    hint: 'Choose your top priority.',
+    type: 'choice',
+    cols: 1,
+    choices: [
+      { icon: '📞', label: 'Get more calls & leads', sub: 'Drive phone calls and contact form submissions', value: 'leads' },
+      { icon: '📅', label: 'Let customers book online', sub: 'Online scheduling or appointment booking', value: 'booking' },
+      { icon: '🏆', label: 'Look more professional', sub: 'Build trust and credibility with a polished site', value: 'credibility' },
+      { icon: '🛒', label: 'Sell products online', sub: 'E-commerce or online store', value: 'ecommerce' },
+    ]
+  },
+  {
+    id: 'timeline',
+    q: 'When do you need this done?',
+    hint: 'No wrong answers — just helps us plan.',
+    type: 'choice',
+    cols: 2,
+    choices: [
+      { icon: '⚡', label: 'ASAP', sub: 'Within 1–2 weeks', value: 'asap' },
+      { icon: '📆', label: 'This month', sub: 'Within 3–4 weeks', value: 'month' },
+      { icon: '🗓', label: 'Next 1–3 months', sub: 'No rush, do it right', value: 'quarter' },
+      { icon: '🤔', label: 'Just exploring', sub: 'Getting a feel for pricing', value: 'exploring' },
+    ]
+  },
+  {
+    id: 'budget',
+    q: 'What\'s your budget range?',
+    hint: 'All budgets welcome — we\'ll find the right fit.',
+    type: 'choice',
+    cols: 2,
+    choices: [
+      { icon: '💸', label: '$500 – $600', sub: 'Essential starter site', value: '500to600' },
+      { icon: '💰', label: '$600 – $700', sub: 'Most popular range', value: '600to700' },
+      { icon: '💎', label: '$700 – $850', sub: 'Full featured build', value: '700to850' },
+      { icon: '🚀', label: '$850 – $1,000', sub: 'Premium custom project', value: '850to1k' },
+    ]
+  },
+  {
+    id: 'contact',
+    q: 'Last step — how do we reach you?',
+    hint: 'We\'ll send your personalized quote within 24 hours.',
+    type: 'contact',
+  }
+];
+
+function openModal() {
+  step = 0;
+  Object.keys(answers).forEach(k => delete answers[k]);
+  renderStep();
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function renderStep() {
+  const total = steps.length;
+  const pct = ((step) / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('stepLabel').textContent = 'Step ' + (step + 1) + ' of ' + total;
+
+  const s = steps[step];
+  let html = '<div class="modal-body">';
+  html += '<div class="step-q">' + s.q + '</div>';
+  html += '<div class="step-hint">' + s.hint + '</div>';
+
+  if (s.type === 'choice') {
+    html += '<div class="choices' + (s.cols === 2 ? ' cols-2' : '') + '">';
+    s.choices.forEach(c => {
+      const sel = answers[s.id] === c.value ? ' selected' : '';
+      html += '<button class="choice-btn' + sel + '" onclick="selectChoice(\'' + s.id + '\',\'' + c.value + '\',this)">';
+      html += '<span class="choice-icon">' + c.icon + '</span>';
+      html += '<span class="choice-text"><strong>' + c.label + '</strong>';
+      if (c.sub) html += '<span>' + c.sub + '</span>';
+      html += '</span>';
+      html += '<span class="choice-check">&#10003;</span>';
+      html += '</button>';
+    });
+    html += '</div>';
+  } else if (s.type === 'contact') {
+    html += '<div class="modal-inputs">';
+    html += '<div class="modal-row">';
+    html += '<div class="modal-input-group"><label>Your Name</label><input type="text" id="inp_name" placeholder="John Smith" /></div>';
+    html += '<div class="modal-input-group"><label>Business Name</label><input type="text" id="inp_biz" placeholder="Smith\'s Plumbing" /></div>';
+    html += '</div>';
+    html += '<div class="modal-input-group"><label>Email Address</label><input type="email" id="inp_email" placeholder="john@yourbusiness.com" /></div>';
+    html += '<div class="modal-input-group"><label>Phone (optional)</label><input type="tel" id="inp_phone" placeholder="(772) 555-0100" /></div>';
+    html += '<div class="modal-input-group"><label>Anything else we should know?</label><textarea id="inp_msg" placeholder="Tell us about your business, any specific ideas, or questions..."></textarea></div>';
+    html += '</div>';
+  }
+
+  html += '</div>';
+
+  const isFirst = step === 0;
+  const isLast = step === steps.length - 1;
+  const nextLabel = isLast ? 'Submit Application &#8599;' : 'Next &#8594;';
+
+  html += '<div class="modal-nav">';
+  if (!isFirst) {
+    html += '<button class="btn-back" onclick="prevStep()">&#8592; Back</button>';
+  } else {
+    html += '<span></span>';
+  }
+  html += '<button class="btn-next" id="btnNext" onclick="nextStep()" ' + (s.type === 'choice' && !answers[s.id] ? 'disabled' : '') + '>' + nextLabel + '</button>';
+  html += '</div>';
+
+  document.getElementById('modalContent').innerHTML = html;
+
+  // re-observe cursor targets
+  document.querySelectorAll('.choice-btn, .btn-next, .btn-back, .modal-close').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
   });
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+}
+
+function selectChoice(id, value, btn) {
+  answers[id] = value;
+  btn.closest('.choices').querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('btnNext').disabled = false;
+}
+
+function prevStep() {
+  if (step > 0) { step--; renderStep(); }
+}
+
+function nextStep() {
+  const s = steps[step];
+  if (s.type === 'contact') {
+    const name  = document.getElementById('inp_name').value.trim();
+    const email = document.getElementById('inp_email').value.trim();
+    const biz   = document.getElementById('inp_biz').value.trim();
+    if (!name || !email || !biz) {
+      document.getElementById('inp_name').style.borderColor = name ? '' : 'rgba(255,80,80,0.6)';
+      document.getElementById('inp_email').style.borderColor = email ? '' : 'rgba(255,80,80,0.6)';
+      document.getElementById('inp_biz').style.borderColor = biz ? '' : 'rgba(255,80,80,0.6)';
+      return;
+    }
+    answers.name  = name;
+    answers.email = email;
+    answers.biz   = biz;
+    answers.phone = document.getElementById('inp_phone').value.trim();
+    answers.msg   = document.getElementById('inp_msg').value.trim();
+    submitApplication();
+    return;
+  }
+  if (step < steps.length - 1) { step++; renderStep(); }
+}
+
+async function submitApplication() {
+  document.getElementById('btnNext').textContent = 'Sending...';
+  document.getElementById('btnNext').disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/meevkkab', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: answers.name,
+        email: answers.email,
+        business: answers.biz,
+        phone: answers.phone || 'Not provided',
+        existing_site: answers.existing_site,
+        business_type: answers.business_type,
+        goal: answers.goal,
+        timeline: answers.timeline,
+        budget: answers.budget,
+        message: answers.msg || 'None'
+      })
+    });
+    if (res.ok) {
+      showSuccess();
+    } else {
+      document.getElementById('btnNext').textContent = 'Something went wrong. Try again.';
+      document.getElementById('btnNext').disabled = false;
+    }
+  } catch {
+    document.getElementById('btnNext').textContent = 'Something went wrong. Try again.';
+    document.getElementById('btnNext').disabled = false;
+  }
+}
+
+function showSuccess() {
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('stepLabel').textContent = 'Application Complete';
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-success">
+      <div class="success-ring">&#10003;</div>
+      <div class="success-title">You're All Set!</div>
+      <p class="success-sub">Your application has been sent. We'll review it and get back to you with a personalized quote within 24 hours.</p>
+      <button class="success-close" onclick="closeModal()">Close</button>
+    </div>
+  `;
+  document.querySelectorAll('.success-close').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+}
 </script>
 </body>
 </html>
