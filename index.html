@@ -63,6 +63,8 @@
   .project-featured:hover { border-color: rgba(155,92,255,0.5); box-shadow: 0 0 50px rgba(155,92,255,0.1); }
   .project-featured:hover .proj-arrow { transform: translate(4px,-4px); }
   .proj-preview { background: #0f0c22; min-height: 420px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; border-right: 1px solid rgba(155,92,255,0.15); }
+  .proj-preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 6s ease; }
+  .project-featured:hover .proj-preview img { transform: translateY(-15%); }
   .browser { width: 88%; background: #1a1630; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
   .browser-bar { background: #231e3a; padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -261,28 +263,7 @@
   <h2 class="work-title fade-up">Our Work.</h2>
   <a class="project-featured fade-up" href="https://asianamericanauto.net/" target="_blank" rel="noopener">
     <div class="proj-preview">
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-          <div class="url-bar">asianamericanauto.net</div>
-        </div>
-        <div class="browser-content">
-          <div class="mock-hero-bar">
-            <span class="mock-logo">ASIAN AMERICAN AUTO</span>
-            <div class="mock-nav"><div class="mock-nav-dot"></div><div class="mock-nav-dot"></div><div class="mock-nav-dot"></div></div>
-          </div>
-          <div class="mock-banner">
-            <div class="mock-h1">Trusted Auto Repair</div>
-            <div class="mock-sub">Professional service you can count on. Serving the local community.</div>
-            <div class="mock-btn">Book Service</div>
-          </div>
-          <div class="mock-cards">
-            <div class="mock-card"><div class="mock-card-icon">&#128295;</div><div class="mock-card-title">Oil Change</div><div class="mock-card-text">Fast &amp; affordable</div></div>
-            <div class="mock-card"><div class="mock-card-icon">&#128663;</div><div class="mock-card-title">Diagnostics</div><div class="mock-card-text">Full inspection</div></div>
-            <div class="mock-card"><div class="mock-card-icon">&#9881;</div><div class="mock-card-title">Repairs</div><div class="mock-card-text">All makes &amp; models</div></div>
-          </div>
-        </div>
-      </div>
+      <img src="screenshot.jpg" alt="Asian American Auto website screenshot" />
     </div>
     <div class="proj-info">
       <div>
