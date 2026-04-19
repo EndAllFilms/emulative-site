@@ -228,6 +228,18 @@
   .next-up-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 0.4rem; }
   .next-up-sub { font-size: 0.9rem; opacity: 0.4; }
 
+  /* ── FAQ ── */
+  .faq { background: var(--deep); }
+  .faq-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; margin-bottom: 4rem; }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(155,92,255,0.1); }
+  .faq-item { background: var(--deep); padding: 2rem 2.5rem; cursor: none; transition: background .2s; }
+  .faq-item:hover { background: rgba(155,92,255,0.06); }
+  .faq-q { font-weight: 500; font-size: 1rem; margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .faq-q::after { content: '+'; color: var(--accent); font-size: 1.3rem; font-weight: 300; flex-shrink: 0; transition: transform .2s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { font-size: 0.88rem; opacity: 0.5; line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height .35s ease, opacity .3s; }
+  .faq-item.open .faq-a { max-height: 300px; opacity: 0.55; }
+
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; }
     section { padding: 5rem 1.5rem; } .hero { padding: 0 1.5rem 4rem; }
@@ -237,6 +249,7 @@
     .proj-info { flex-direction: column; padding: 1.5rem; gap: 1.2rem; align-items: flex-start; }
     .coming-soon { flex-direction: column; gap: 1rem; text-align: center; }
     footer { flex-direction: column; gap: 0.8rem; text-align: center; }
+    .faq-grid { grid-template-columns: 1fr; }
     .choices.cols-2 { grid-template-columns: 1fr; }
     .modal-row { grid-template-columns: 1fr; }
     .modal-body { padding: 1.5rem 1.2rem 1.5rem; }
@@ -256,6 +269,7 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -296,7 +310,7 @@
       <div class="stats">
         <div><div class="stat-num">1</div><div class="stat-label">Project Delivered</div></div>
         <div><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
-        <div><div class="stat-num">&#8734;</div><div class="stat-label">Room to Grow</div></div>
+        <div><div class="stat-num">$500+</div><div class="stat-label">Starting Price</div></div>
       </div>
     </div>
     <div class="about-text fade-up">
@@ -413,6 +427,44 @@
     </div>
   </div>
   <p class="price-note fade-up">50% deposit to start, 50% on completion. Prices vary based on scope and platform. Want it built on Wix, WordPress, or your own hosting? We do that too &mdash; just mention it in your application.</p>
+</section>
+<section class="faq" id="faq">
+  <div class="section-label fade-up">FAQ</div>
+  <h2 class="faq-title fade-up">Got<br>Questions?</h2>
+  <div class="faq-grid fade-up">
+    <div class="faq-item">
+      <div class="faq-q">How much does a website cost?</div>
+      <div class="faq-a">Our projects start at $500 and go up based on complexity, number of pages, and platform. Most local business sites fall in the $800&ndash;$1,200 range. Fill out a free quote and we'll give you an exact number within 24 hours.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I need to buy a domain name?</div>
+      <div class="faq-a">We can handle it for you or connect one you already own. If you don't have a domain yet, we'll help you pick one and get it set up at no extra charge. You own it either way.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I edit the website myself after launch?</div>
+      <div class="faq-a">Yes — if you want full control, we'll build on WordPress, Wix, or Squarespace so you can make changes anytime. If you'd rather not deal with it, we handle all updates for you. Just let us know your preference upfront.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does it take to build?</div>
+      <div class="faq-a">Most sites are completed within 2&ndash;4 weeks after we receive all your content (logo, photos, text). The timeline starts once the deposit is paid and content is submitted. Rush delivery is available on Premium builds.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if I already have a website?</div>
+      <div class="faq-a">We can redesign or improve your existing site. Whether it looks outdated, loads slowly, or just isn't converting visitors into customers — we'll assess what needs fixing and give you a quote.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can you build on Wix, WordPress, or my hosting platform?</div>
+      <div class="faq-a">Absolutely. We build on any platform — WordPress, Wix, Squarespace, Webflow, or your existing hosting account (Bluehost, GoDaddy, etc.). Just mention your preference in the quote application and we'll accommodate it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do you charge monthly fees?</div>
+      <div class="faq-a">No monthly fees and no subscriptions. You pay 50% upfront when work begins and 50% when the site is finished. That's it. If you want us to manage hosting on your behalf there may be a small annual fee, but that's always discussed upfront.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What do you need from me to get started?</div>
+      <div class="faq-a">Once you're ready to go, we'll need your logo, any photos of your business, your services or menu, contact info, and any inspiration sites you like. We'll send a content checklist after you book so nothing gets missed.</div>
+    </div>
+  </div>
 </section>
 <section class="cta-section" id="contact">
   <div class="cta-glow"></div>
@@ -709,6 +761,14 @@ function showSuccess() {
     el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
   });
 }
+  // FAQ toggle
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
 </script>
 </body>
 </html>
