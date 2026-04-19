@@ -194,6 +194,40 @@
   .success-close { background: var(--accent); border: none; color: var(--black); padding: 0.85rem 2.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: none; transition: background .2s; }
   .success-close:hover { background: var(--light); }
 
+  /* ── PRICING ── */
+  .pricing { background: var(--deep); }
+  .pricing-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.95; margin-bottom: 1rem; }
+  .pricing-sub { opacity: 0.45; font-size: 1rem; margin-bottom: 4rem; max-width: 480px; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .price-card { border: 1px solid rgba(155,92,255,0.18); padding: 2rem 1.5rem; transition: border-color .3s, transform .3s; position: relative; }
+  .price-card:hover { border-color: rgba(155,92,255,0.5); transform: translateY(-4px); }
+  .price-card.popular { border-color: var(--accent); }
+  .popular-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--black); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.8rem; white-space: nowrap; }
+  .price-range { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+  .price-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.7; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .price-features li { font-size: 0.82rem; opacity: 0.55; display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.4; }
+  .price-features li::before { content: ''; display: block; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; margin-top: 0.45rem; flex-shrink: 0; }
+  .price-note { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(155,92,255,0.1); font-size: 0.82rem; opacity: 0.4; text-align: center; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial { background: var(--black); }
+  .testi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .testi-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.95; margin-bottom: 1rem; }
+  .testi-title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
+  .testi-card-wrap { position: relative; }
+  .testi-card-wrap::before { content: '\201C'; font-family: 'Bebas Neue', sans-serif; font-size: 10rem; color: var(--accent); opacity: 0.08; position: absolute; top: -3rem; left: -1rem; line-height: 1; pointer-events: none; }
+  .testi-quote { font-size: 1.15rem; line-height: 1.75; opacity: 0.75; margin-bottom: 2rem; font-style: italic; position: relative; }
+  .testi-author { display: flex; align-items: center; gap: 1rem; }
+  .testi-avatar { width: 48px; height: 48px; background: rgba(155,92,255,0.2); border: 1px solid rgba(155,92,255,0.3); display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 0.9rem; color: var(--light); flex-shrink: 0; }
+  .testi-name { font-weight: 500; font-size: 0.95rem; }
+  .testi-biz { font-size: 0.78rem; opacity: 0.4; margin-top: 0.2rem; }
+
+  /* ── NEXT UP ── */
+  .next-up { margin-top: 2rem; border: 1px solid rgba(155,92,255,0.18); padding: 3rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+  .next-up-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 0.4rem; }
+  .next-up-sub { font-size: 0.9rem; opacity: 0.4; }
+
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; }
     section { padding: 5rem 1.5rem; } .hero { padding: 0 1.5rem 4rem; }
@@ -208,6 +242,9 @@
     .modal-body { padding: 1.5rem 1.2rem 1.5rem; }
     .modal-header { padding: 1.2rem 1.2rem 0; }
     .modal-nav { padding: 1rem 1.2rem; }
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .testi-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .next-up { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -218,6 +255,7 @@
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -286,9 +324,31 @@
       <a class="proj-link" href="https://asianamericanauto.net/" target="_blank" rel="noopener">Visit Live Site <em class="proj-arrow">&#8599;</em></a>
     </div>
   </div>
-  <div class="coming-soon fade-up">
-    <span class="cs-text">More Projects Coming Soon</span>
-    <span class="cs-badge">Currently Taking New Clients</span>
+  <div class="next-up fade-up">
+    <div>
+      <div class="next-up-title">Want to be next?</div>
+      <div class="next-up-sub">We're actively taking on new local business clients. Fill out a quick application and we'll get back to you within 24 hours.</div>
+    </div>
+    <button onclick="openModal()" class="btn-primary">Apply Now &#8599;</button>
+  </div>
+</section>
+<section class="testimonial" id="testimonial">
+  <div class="testi-inner">
+    <div>
+      <div class="section-label">Client Results</div>
+      <h2 class="testi-title fade-up">Real Businesses.<br><em>Real</em> Results.</h2>
+      <p style="opacity:0.45;font-size:0.9rem;margin-top:1.5rem;line-height:1.7;">Every site we build is designed to do one thing — bring your business more customers. Here's what our clients say after launch.</p>
+    </div>
+    <div class="testi-card-wrap fade-up">
+      <p class="testi-quote">"The website completely transformed how customers find us. We started getting calls from people who said they found us online — that never happened before. It looks professional, loads fast, and actually represents our shop the right way."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AA</div>
+        <div>
+          <div class="testi-name">Asian American Auto</div>
+          <div class="testi-biz">Auto Repair &mdash; Fort Pierce, FL</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <section class="process" id="process">
@@ -300,6 +360,59 @@
     <div class="step fade-up"><div class="step-num">03</div><div class="step-title">Review &amp; Refine</div><div class="step-text">You review, request revisions, and we polish until every detail is exactly right.</div></div>
     <div class="step fade-up"><div class="step-num">04</div><div class="step-title">Launch &amp; Grow</div><div class="step-text">Your site goes live and starts working for you. We stay available for ongoing support.</div></div>
   </div>
+</section>
+<section class="pricing" id="pricing">
+  <div class="section-label fade-up">Pricing</div>
+  <h2 class="pricing-title fade-up">Starting<br>From <em style="color:var(--accent);font-style:normal;">$500.</em></h2>
+  <p class="pricing-sub fade-up">Every project is priced based on what you actually need. The ranges below are starting points &mdash; not limits. Fill out a quote and we'll find the right fit together.</p>
+  <div class="pricing-grid fade-up">
+    <div class="price-card">
+      <div class="price-range">$500&ndash;$800</div>
+      <div class="price-name">Starter</div>
+      <ul class="price-features">
+        <li>1&ndash;3 page website</li>
+        <li>Mobile-friendly design</li>
+        <li>Contact form or call button</li>
+        <li>Basic SEO setup</li>
+        <li>2 free revision rounds</li>
+      </ul>
+    </div>
+    <div class="price-card popular">
+      <div class="popular-badge">Most Popular</div>
+      <div class="price-range">$800&ndash;$1,200</div>
+      <div class="price-name">Standard</div>
+      <ul class="price-features">
+        <li>3&ndash;5 page website</li>
+        <li>Custom design from scratch</li>
+        <li>Mobile-first layout</li>
+        <li>SEO + Google-ready setup</li>
+        <li>2 free revision rounds</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-range">$1,200&ndash;$1,800</div>
+      <div class="price-name">Professional</div>
+      <ul class="price-features">
+        <li>5+ pages, full site</li>
+        <li>Photo gallery or portfolio</li>
+        <li>Booking or quote form</li>
+        <li>Advanced SEO structure</li>
+        <li>2 free revision rounds</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-range">$1,800+</div>
+      <div class="price-name">Premium</div>
+      <ul class="price-features">
+        <li>Complex or custom builds</li>
+        <li>Multiple integrations</li>
+        <li>Priority delivery</li>
+        <li>Full SEO optimization</li>
+        <li>2 free revision rounds</li>
+      </ul>
+    </div>
+  </div>
+  <p class="price-note fade-up">50% deposit to start, 50% on completion. Prices vary based on scope and platform. Want it built on Wix, WordPress, or your own hosting? We do that too &mdash; just mention it in your application.</p>
 </section>
 <section class="cta-section" id="contact">
   <div class="cta-glow"></div>
@@ -411,10 +524,23 @@ const steps = [
     type: 'choice',
     cols: 2,
     choices: [
-      { icon: '💸', label: '$500 – $600', sub: 'Essential starter site', value: '500to600' },
-      { icon: '💰', label: '$600 – $700', sub: 'Most popular range', value: '600to700' },
-      { icon: '💎', label: '$700 – $850', sub: 'Full featured build', value: '700to850' },
-      { icon: '🚀', label: '$850 – $1,000', sub: 'Premium custom project', value: '850to1k' },
+      { icon: '💸', label: 'Under $800', sub: 'Starter — quick turnaround', value: 'under800' },
+      { icon: '💰', label: '$800 – $1,200', sub: 'Most popular range', value: '800to1200' },
+      { icon: '💎', label: '$1,200 – $2,000', sub: 'Professional build', value: '1200to2000' },
+      { icon: '🚀', label: '$2,000+', sub: 'Custom or complex project', value: '2000plus' },
+    ]
+  },
+  {
+    id: 'platform',
+    q: 'Where should your site be hosted?',
+    hint: 'We build on any platform — no extra charge for your preference.',
+    type: 'choice',
+    cols: 2,
+    choices: [
+      { icon: '⚡', label: 'You decide', sub: 'We\'ll recommend the best fit', value: 'we_decide' },
+      { icon: '🌐', label: 'WordPress', sub: 'Full control, easy to edit yourself', value: 'wordpress' },
+      { icon: '🎨', label: 'Wix or Squarespace', sub: 'Drag-and-drop, manage it yourself', value: 'wix_squarespace' },
+      { icon: '🛠', label: 'My own hosting', sub: 'Bluehost, GoDaddy, or similar', value: 'own_hosting' },
     ]
   },
   {
